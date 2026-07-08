@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description | strip_newlines }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script>
+    (function () {
+      var stored = localStorage.getItem("theme");
+      var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+<body>
+  {% include nav.html %}
+  <main class="container">
+    {{ content }}
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ 'now' | date: "%Y" }} The Polly Project &bull; <a href="https://github.com/App-vNext/Polly">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+</body>
+</html>

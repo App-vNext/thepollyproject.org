@@ -4,9 +4,6 @@ description: >-
   resilience and transient-fault-handling library.
 url: "https://thepollyproject.org"
 baseurl: ""
-theme: minima
-minima:
-  skin: classic
 plugins:
   - jekyll-feed
 exclude:
