@@ -1,0 +1,11 @@
+{% assign author = site.data.authors[page.author] %}
+{% if author %}
+<aside class="author-card">
+  <img src="{{ author.photo | relative_url }}" alt="{{ page.author }}" class="author-photo">
+  <div class="author-details">
+    <p class="author-name">About {{ page.author }}</p>
+    <p class="author-bio">{{ author.bio }}</p>
+    {% if author.website %}<a class="author-website" href="{{ author.website }}" target="_blank" rel="noopener">Website</a>{% endif %}
+  </div>
+</aside>
+{% endif %}

@@ -219,3 +219,42 @@ h1, h2, h3 { line-height: 1.25; }
   .hero-inner { flex-direction: column; text-align: center; }
   .post-list li { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
 }
+
+/* Author card */
+.author-card {
+  display: flex;
+  gap: 1.25rem;
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.author-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-name {
+  margin: 0 0 0.35rem 0;
+  font-weight: 700;
+}
+
+.author-bio {
+  margin: 0 0 0.5rem 0;
+  color: var(--fg-muted);
+}
+
+.author-website {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .author-card { flex-direction: column; align-items: flex-start; }
+}
