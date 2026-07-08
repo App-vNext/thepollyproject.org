@@ -102,7 +102,7 @@ PolicyWrap<HttpResponseMessage> combinedResilience =
     .Wrap(timeout);
 ```
 
-For further information on combining policies, see the [PolicyWrap wiki](https://web.archive.org/web/20250218001535/https://github.com/App-vNext/Polly/wiki/PolicyWrap).
+For further information on combining policies, see the [PolicyWrap wiki](https://github.com/App-vNext/Polly/wiki/PolicyWrap).
 
 ### Summary
 

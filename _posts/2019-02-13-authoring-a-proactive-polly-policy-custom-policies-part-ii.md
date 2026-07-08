@@ -7,17 +7,17 @@ date: 2019-02-13
 
 In this article we'll build our first custom Polly policy: a proactive Policy to capture execution timings.
 
-Polly polices fall into two categories: **reactive** (which react to faults) and **non-reactive** or **proactive** (which act on all executions). To author a policy which reacts to faults, see [Part III: Authoring a reactive custom policy](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2/).
+Polly polices fall into two categories: **reactive** (which react to faults) and **non-reactive** or **proactive** (which act on all executions). To author a policy which reacts to faults, see [Part III: Authoring a reactive custom policy](/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2.html).
 
-For background on custom policies and the Polly.Contrib, see [Part I: Introducing custom Polly policies](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/introducing-custom-polly-policies-and-polly-contrib-custom-policies-part-i/).
+For background on custom policies and the Polly.Contrib, see [Part I: Introducing custom Polly policies](/2019/02/13/introducing-custom-polly-policies-and-polly-contrib-custom-policies-part-i.html).
 
-A final article in the series, Part IV, covers [Custom policies for all execution types: sync and async, generic and non-generic](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv/).
+A final article in the series, Part IV, covers [Custom policies for all execution types: sync and async, generic and non-generic](/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv.html).
 
 ## Authoring a non-reactive custom policy: Capture execution timing
 
-For simplicity, in this article we'll assume we're developing a custom policy for use with [Polly and HttpClientFactory](https://web.archive.org/web/20250215130749/https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory). This means that all executions are async and return `Task<HttpResponseMessage>`.
+For simplicity, in this article we'll assume we're developing a custom policy for use with [Polly and HttpClientFactory](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory). This means that all executions are async and return `Task<HttpResponseMessage>`.
 
-For this, we only need to implement the `IAsyncPolicy<TResult>` form of the policy. For other forms, see [Part IV of the series](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv/).
+For this, we only need to implement the `IAsyncPolicy<TResult>` form of the policy. For other forms, see [Part IV of the series](/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv.html).
 
 ### Step 1: Name your policy and extend the base class
 
@@ -83,7 +83,7 @@ protected override async Task<TResult> ImplementationAsync(
 
 That's it for a no-op implementation!
 
-*Aside*: To make it easier for you to get started, Polly [provides all this as a template starting point for a custom policy](https://web.archive.org/web/20250215130749/https://github.com/Polly-Contrib/Polly.Contrib.CustomPolicyTemplates). To author your own custom policy, you can grab the template repo and copy/paste/rename the classes.
+*Aside*: To make it easier for you to get started, Polly [provides all this as a template starting point for a custom policy](https://github.com/Polly-Contrib/Polly.Contrib.CustomPolicyTemplates). To author your own custom policy, you can grab the template repo and copy/paste/rename the classes.
 
 ### Step 3: Add your custom functionality
 
@@ -115,7 +115,7 @@ Hmm, we still need to let the user do something with that `elapsed` value. To ke
 Func<TimeSpan, Context, Task> timingPublisher
 ```
 
-We also make the `timingPublisher` delegate take an input parameter `Polly.Context`: this execution-scoped context travels with every Polly execution. Users can (optionally) use it to pass extra information in to the execution, to exchange information between different parts of the execution, or to capture information after execution ([more info here](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2017/05/04/putting-the-context-into-polly/) and [here](https://web.archive.org/web/20250215130749/https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory#use-case-exchanging-information-between-policy-execution-and-calling-code)). It also carries important [metadata about the execution](https://web.archive.org/web/20250215130749/https://github.com/App-vNext/Polly/wiki/Keys-And-Context-Data) which can be useful for filtering. It's good practice to make `Context` an input parameter to any delegate you let users configure on a policy.
+We also make the `timingPublisher` delegate take an input parameter `Polly.Context`: this execution-scoped context travels with every Polly execution. Users can (optionally) use it to pass extra information in to the execution, to exchange information between different parts of the execution, or to capture information after execution ([more info here](/2017/05/04/putting-the-context-into-polly.html) and [here](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory#use-case-exchanging-information-between-policy-execution-and-calling-code)). It also carries important [metadata about the execution](https://github.com/App-vNext/Polly/wiki/Keys-And-Context-Data) which can be useful for filtering. It's good practice to make `Context` an input parameter to any delegate you let users configure on a policy.
 
 ```c#
 public class AsyncTimingPolicy<TResult> : AsyncPolicy<TResult>
@@ -251,16 +251,16 @@ Of course, writing to the Console is the least imaginative use. The intention of
 
 ### Where can I get the code?
 
-The full source code for `AsyncTimingPolicy<TResult>` and the test console app is available in [this Github repo](https://web.archive.org/web/20250215130749/https://github.com/Polly-Contrib/Polly.Contrib.TimingPolicy).
+The full source code for `AsyncTimingPolicy<TResult>` and the test console app is available in [this Github repo](https://github.com/Polly-Contrib/Polly.Contrib.TimingPolicy).
 
 ## Where next?
 
 ### Grab the template
 
-If you want to dive straight in to experimenting with a custom policy, just grab the [template repo](https://web.archive.org/web/20250215130749/https://github.com/Polly-Contrib/Polly.Contrib.CustomPolicyTemplates) and start copy/paste/rename/extend-ing the classes.
+If you want to dive straight in to experimenting with a custom policy, just grab the [template repo](https://github.com/Polly-Contrib/Polly.Contrib.CustomPolicyTemplates) and start copy/paste/rename/extend-ing the classes.
 
 ### Authoring a reactive custom policy
 
-In the next part of this series, [Part III](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2/), we'll look at authoring a *reactive* custom policy, to log any exception or fault and then rethrow or bubble it outwards. The new policy will allow you to inject custom logging into any position in a `PolicyWrap`.
+In the next part of this series, [Part III](/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2.html), we'll look at authoring a *reactive* custom policy, to log any exception or fault and then rethrow or bubble it outwards. The new policy will allow you to inject custom logging into any position in a `PolicyWrap`.
 
-Finally, in [Part IV](https://web.archive.org/web/20250215130749/http://www.thepollyproject.org/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv/), we'll look at how to author other forms of policy - synchronous policies and non-generic policies - in the most efficient manner.
+Finally, in [Part IV](/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv.html), we'll look at how to author other forms of policy - synchronous policies and non-generic policies - in the most efficient manner.

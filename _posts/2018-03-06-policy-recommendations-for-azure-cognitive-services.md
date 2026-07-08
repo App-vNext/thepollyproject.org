@@ -7,7 +7,7 @@ date: 2018-03-06
 
 ![Policy recommendations for Azure Cognitive Services](/assets/images/2018/03/Polly-Heart-Cognitive-1.png)
 
-[Azure Cognitive Services](https://web.archive.org/web/20250318065129/https://azure.microsoft.com/services/cognitive-services/) is an excellent series of cloud-based APIs that open up a world of artificial intelligence (AI) opportunities that you can easily add to your applications and data process flow. Each service contains a set of trained and field-tested machine learning models that are continuously retrained for greater accuracy over time. Using these Cognitive Services models is as simple as making a REST call, which can be invoked from any application or process that is able to do so. [Read more](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/azure/architecture/data-guide/technology-choices/cognitive-services) about the available services.
+[Azure Cognitive Services](https://azure.microsoft.com/services/cognitive-services/) is an excellent series of cloud-based APIs that open up a world of artificial intelligence (AI) opportunities that you can easily add to your applications and data process flow. Each service contains a set of trained and field-tested machine learning models that are continuously retrained for greater accuracy over time. Using these Cognitive Services models is as simple as making a REST call, which can be invoked from any application or process that is able to do so. [Read more](https://docs.microsoft.com/azure/architecture/data-guide/technology-choices/cognitive-services) about the available services.
 
 ### The challenge
 
@@ -19,13 +19,13 @@ The above screen capture shows the available pricing tiers for the Computer Visi
 
 The challenge here is obvious: you can easily hit these rate limits during busy periods of traffic, or when batch processing many items that result in multiple calls to the API within a short time frame. There are two ways to approach this challenge. The first is by being **proactive**, and throttle requests to the API from your application. The second approach is **reactive**. This means that you alter your application or process to slow down or pause requests to allow the service to recover.
 
-Polly currently has a [Rate-limit Policy](https://web.archive.org/web/20250318065129/https://github.com/App-vNext/Polly/wiki/Polly-Roadmap#rate-limit-policy) on the road map. There is currently no plan to create this policy (we could use your help!), but the road map link above does refer to a couple of different options for doing this yourself. Because of this, we'll focus on the reactionary approach, and one way you can create and use a resiliency strategy through the combination of a couple of different policies.
+Polly currently has a [Rate-limit Policy](https://github.com/App-vNext/Polly/wiki/Polly-Roadmap#rate-limit-policy) on the road map. There is currently no plan to create this policy (we could use your help!), but the road map link above does refer to a couple of different options for doing this yourself. Because of this, we'll focus on the reactionary approach, and one way you can create and use a resiliency strategy through the combination of a couple of different policies.
 
 ### The environment
 
-In this example, I have created an [Azure Function](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/azure/azure-functions/functions-overview) that is triggered whenever a photo is uploaded to an Azure [Blob Storage](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/azure/storage/blobs/storage-blobs-introduction) container. If you've not heard of or used Azure Functions, I highly recommend looking into it further. I've been diving head-first into serverless lately, and I believe there are a lot of great capabilities around this space. The most interesting aspect about serverless (though there are still servers in play) is how you only pay for what you use. Azure Functions, as opposed to standard App Services, uses sub-second billing on the [consumption plan](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/azure/azure-functions/functions-overview#pricing). This means you only pay for when the function is used, rather than paying a monthly fee for the privilege of being able to use it. Another benefit is its ability to automatically scale out to n-number of servers to meet demand, all without any configuration on my part. After the deluge of requests subside, the function will scale back to zero servers, or however are needed for incoming requests.
+In this example, I have created an [Azure Function](https://docs.microsoft.com/azure/azure-functions/functions-overview) that is triggered whenever a photo is uploaded to an Azure [Blob Storage](https://docs.microsoft.com/azure/storage/blobs/storage-blobs-introduction) container. If you've not heard of or used Azure Functions, I highly recommend looking into it further. I've been diving head-first into serverless lately, and I believe there are a lot of great capabilities around this space. The most interesting aspect about serverless (though there are still servers in play) is how you only pay for what you use. Azure Functions, as opposed to standard App Services, uses sub-second billing on the [consumption plan](https://docs.microsoft.com/azure/azure-functions/functions-overview#pricing). This means you only pay for when the function is used, rather than paying a monthly fee for the privilege of being able to use it. Another benefit is its ability to automatically scale out to n-number of servers to meet demand, all without any configuration on my part. After the deluge of requests subside, the function will scale back to zero servers, or however are needed for incoming requests.
 
-The purpose of my function is to perform an object character recognition (OCR) process on each uploaded image as it is added to the storage container. To do this, I am using the [Computer Vision API](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home) Cognitive Service.
+The purpose of my function is to perform an object character recognition (OCR) process on each uploaded image as it is added to the storage container. To do this, I am using the [Computer Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home) Cognitive Service.
 
 Below is a diagram of my overall solution. We will just be focusing on the left-hand side for this post:
 
@@ -33,7 +33,7 @@ Below is a diagram of my overall solution. We will just be focusing on the left-
 
 ### Creating a resiliency policy with Polly
 
-Let's start with the overall resiliency policy, then work backwards from there. There are two policies we'll use a Retry policy ([wait and retry](https://web.archive.org/web/20250318065129/https://github.com/App-vNext/Polly#wait-and-retry)), and a [Circuit Breaker](https://web.archive.org/web/20250318065129/https://github.com/App-vNext/Polly#circuit-breaker) policy. Because we want these two policies to work together, we'll use a [PolicyWrap](https://web.archive.org/web/20250318065129/https://github.com/App-vNext/Polly#policywrap) to combine them.
+Let's start with the overall resiliency policy, then work backwards from there. There are two policies we'll use a Retry policy ([wait and retry](https://github.com/App-vNext/Polly#wait-and-retry)), and a [Circuit Breaker](https://github.com/App-vNext/Polly#circuit-breaker) policy. Because we want these two policies to work together, we'll use a [PolicyWrap](https://github.com/App-vNext/Polly#policywrap) to combine them.
 
 The method below creates a Polly-based resiliency strategy that does the following when communicating with the external (downstream) Computer Vision API service:
 
@@ -93,7 +93,7 @@ private PolicyWrap<HttpResponseMessage> DefineAndRetrieveResiliencyStrategy()
 }
 ```
 
-**NOTE:** A longer-term resiliency strategy would have us share the circuit breaker state across instances, ensuring subsequent calls to the struggling downstream service from new instances adhere to the circuit state, allowing that service to recover. This could possibly be handled by a *Distributed Circuit Breaker* ([https://github.com/App-vNext/Polly/issues/287](https://web.archive.org/web/20250318065129/https://github.com/App-vNext/Polly/issues/287)) in the future, or perhaps by using [Durable Functions](https://web.archive.org/web/20250318065129/https://docs.microsoft.com/azure/azure-functions/durable-functions-overview) that can hold the state.
+**NOTE:** A longer-term resiliency strategy would have us share the circuit breaker state across instances, ensuring subsequent calls to the struggling downstream service from new instances adhere to the circuit state, allowing that service to recover. This could possibly be handled by a *Distributed Circuit Breaker* ([https://github.com/App-vNext/Polly/issues/287](https://github.com/App-vNext/Polly/issues/287)) in the future, or perhaps by using [Durable Functions](https://docs.microsoft.com/azure/azure-functions/durable-functions-overview) that can hold the state.
 
 ### Using the new resiliency policy
 
@@ -235,7 +235,7 @@ licensePlateText = await new FindLicensePlateText(log, _client).GetLicensePlate(
 
 ### Watching the policy work its magic
 
-I've instrumented my Azure Function App that holds my functions with [Application Insights](https://web.archive.org/web/20250318065129/https://azure.microsoft.com/services/application-insights/) so I can capture and view telemetry in real-time. Because it is asynchronous, it does not impact my solution's performance in any way.
+I've instrumented my Azure Function App that holds my functions with [Application Insights](https://azure.microsoft.com/services/application-insights/) so I can capture and view telemetry in real-time. Because it is asynchronous, it does not impact my solution's performance in any way.
 
 Here is a screen capture of the Live Metrics Stream provided by my Application Insights instance, showing the results of my function making calls to the Computer Vision API (S1 - Standard pricing tier) while rapidly uploading 1,000 photos:
 

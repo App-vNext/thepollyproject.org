@@ -9,13 +9,13 @@ date: 2019-02-13
 
 The Polly team have long wanted to allow users to extend Polly's capability with custom policies.
 
-[Polly v7.0](https://web.archive.org/web/20250215122953/https://www.nuget.org/packages/Polly/7.0.0) introduces a simple mechanism for authoring custom policies which integrate fully with the existing Polly architecture: the fault-handling syntax, the execution overloads, and the ability to combine policies in a `PolicyWrap`.
+[Polly v7.0](https://www.nuget.org/packages/Polly/7.0.0) introduces a simple mechanism for authoring custom policies which integrate fully with the existing Polly architecture: the fault-handling syntax, the execution overloads, and the ability to combine policies in a `PolicyWrap`.
 
 This article introduces custom policies and the Polly.Contrib. If you're just interested in the how, skip straight to:
 
-- [Part II: Authoring a non-reactive custom policy](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/authoring-a-proactive-polly-policy-custom-policies-part-ii/) (a policy which acts on all executions)
-- [Part III: Authoring a reactive custom policy](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2/) (a policy which react to faults).
-- [Part IV: Custom policies for all execution types](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv/): sync and async, generic and non-generic.
+- [Part II: Authoring a non-reactive custom policy](/2019/02/13/authoring-a-proactive-polly-policy-custom-policies-part-ii.html) (a policy which acts on all executions)
+- [Part III: Authoring a reactive custom policy](/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2.html) (a policy which react to faults).
+- [Part IV: Custom policies for all execution types](/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv.html): sync and async, generic and non-generic.
 
 ## Why custom policies?
 
@@ -39,18 +39,18 @@ The Polly team is kick-starting the Polly.Contrib with:
 
 To get going, simply fork/duplicate one of the blank templates and code away!
 
-If you'd like your custom policy to be part of [Polly.Contrib](https://web.archive.org/web/20250215122953/https://github.com/Polly-Contrib), that'd be awesome (in fact we actively encourage it!). Bringing your custom policy (or other contribution) into the Polly-Contrib gives you:
+If you'd like your custom policy to be part of [Polly.Contrib](https://github.com/Polly-Contrib), that'd be awesome (in fact we actively encourage it!). Bringing your custom policy (or other contribution) into the Polly-Contrib gives you:
 
 - exposure and recognition under the Polly brand
 - in-built CI (AppVeyor) which builds to nuget packages
 - ability to publish the nugets under the Polly-Contrib organisation
 - involvement in a wider team who can support and advise.
 
-[Contact us on Polly slack](https://web.archive.org/web/20250215122953/http://www.pollytalk.org/) to move your contrib into Polly-Contrib and we can help organise delivering your awesomeness to the Polly community!
+[Contact us on Polly slack](http://www.pollytalk.org/) to move your contrib into Polly-Contrib and we can help organise delivering your awesomeness to the Polly community!
 
 #### 3. To deliver new functionality outside the main Polly package (..."Welcome Simmy!")
 
-[Simmy](https://web.archive.org/web/20250215122953/https://github.com/Polly-Contrib/Simmy) is a major new package from the Polly team and some awesome contributors [@vany0114](https://web.archive.org/web/20250215122953/https://github.com/vany0114) and [@mebjas](https://web.archive.org/web/20250215122953/https://github.com/mebjas). Simmy opens a path for **chaos-engineering** and **fault injection** using Polly. It's aimed at both live-testing the resilience of your production systems; and simulating faults in the unit testing or CI phase.
+[Simmy](https://github.com/Polly-Contrib/Simmy) is a major new package from the Polly team and some awesome contributors [@vany0114](https://github.com/vany0114) and [@mebjas](https://github.com/mebjas). Simmy opens a path for **chaos-engineering** and **fault injection** using Polly. It's aimed at both live-testing the resilience of your production systems; and simulating faults in the unit testing or CI phase.
 
 As a fault-*injection* tool, Simmy has a different focus to Polly, and we wanted to host the new concept in a package with its own name and identity.
 
@@ -58,6 +58,6 @@ As a fault-*injection* tool, Simmy has a different focus to Polly, and we wanted
 
 To learn how to author your first custom policy, skip straight to:
 
-- [Part II: Authoring a non-reactive custom policy](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/authoring-a-proactive-polly-policy-custom-policies-part-ii/) (a policy which acts on all executions)
-- [Part III: Authoring a reactive custom policy](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2/) (a policy which react to faults).
-- [Part IV: Custom policies for all execution types](https://web.archive.org/web/20250215122953/http://www.thepollyproject.org/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv/): sync and async, generic and non-generic.
+- [Part II: Authoring a non-reactive custom policy](/2019/02/13/authoring-a-proactive-polly-policy-custom-policies-part-ii.html) (a policy which acts on all executions)
+- [Part III: Authoring a reactive custom policy](/2019/02/13/authoring-a-reactive-polly-policy-custom-policies-part-iii-2.html) (a policy which react to faults).
+- [Part IV: Custom policies for all execution types](/2019/02/13/custom-policies-for-all-execution-types-custom-policies-part-iv.html): sync and async, generic and non-generic.
