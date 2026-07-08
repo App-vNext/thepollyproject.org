@@ -1,4 +1,28 @@
 ---
 layout: default
 ---
-{{ content }}
+{% include hero.html %}
+
+{% assign featured = site.posts.first %}
+<article class="featured-post">
+  <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+  <p class="post-meta">
+    {{ featured.date | date: "%B %-d, %Y" }}
+    {% if featured.author %} &bull; {{ featured.author }}{% endif %}
+  </p>
+  {% if featured.content contains '<img src="' %}
+    {% assign featured_image = featured.content | split: '<img src="' | last | split: '"' | first %}
+    <img class="featured-post-image" src="{{ featured_image }}" alt="{{ featured.title }}">
+  {% endif %}
+  <p class="excerpt">{{ featured.content | strip_html | strip_newlines | truncate: 220 }}</p>
+  <a class="read-more" href="{{ featured.url | relative_url }}">Continue reading &rarr;</a>
+</article>
+
+<ul class="post-list">
+  {% for post in site.posts offset: 1 %}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+  </li>
+  {% endfor %}
+</ul>
