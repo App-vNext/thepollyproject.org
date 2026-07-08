@@ -1,0 +1,11 @@
+title: The Polly Project
+description: >-
+  News, releases, and deep dives from the team behind Polly, the .NET
+  resilience and transient-fault-handling library.
+url: "https://thepollyproject.org"
+baseurl: ""
+theme: minima
+minima:
+  skin: classic
+plugins:
+  - jekyll-feed
