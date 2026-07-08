@@ -1,0 +1,14 @@
+<article class="post-card{% if include.featured %} featured{% endif %}">
+  <h2><a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h2>
+  <p class="post-meta">
+    {{ include.post.date | date: "%B %-d, %Y" }}
+    {% if include.post.author %} &bull; {{ include.post.author }}{% endif %}
+  </p>
+  {% assign img_parts = include.post.content | split: '<img src="' %}
+  {% if img_parts.size > 1 %}
+    {% assign post_image = img_parts[1] | split: '"' | first %}
+    <img class="post-card-image" src="{{ post_image }}" alt="{{ include.post.title }}">
+  {% endif %}
+  <p class="excerpt">{{ include.post.content | strip_html | strip_newlines | truncatewords: 40 }}</p>
+  <a class="read-more" href="{{ include.post.url | relative_url }}">Continue reading &rarr;</a>
+</article>
