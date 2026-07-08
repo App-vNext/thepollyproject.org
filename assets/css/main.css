@@ -254,3 +254,53 @@ h1, h2, h3 { line-height: 1.25; }
 @media (max-width: 480px) {
   .author-card { flex-direction: column; align-items: flex-start; }
 }
+
+/* Post navigation (previous/next) */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-decoration: none;
+  max-width: 45%;
+}
+
+.post-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.post-nav-label {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+}
+
+.post-nav-title {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.post-nav a:hover .post-nav-title {
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  .post-nav {
+    flex-direction: column;
+  }
+  .post-nav a,
+  .post-nav-next {
+    max-width: 100%;
+    text-align: left;
+    margin-left: 0;
+  }
+}
