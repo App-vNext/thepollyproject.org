@@ -143,6 +143,9 @@ h1, h2, h3 { line-height: 1.25; }
 .hero {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
 }
 
 .hero-inner {
@@ -150,6 +153,8 @@ h1, h2, h3 { line-height: 1.25; }
   align-items: center;
   gap: 1.5rem;
   padding: 2.5rem 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 .hero-logo { flex-shrink: 0; }

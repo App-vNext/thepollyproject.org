@@ -10,11 +10,12 @@ layout: default
     {{ featured.date | date: "%B %-d, %Y" }}
     {% if featured.author %} &bull; {{ featured.author }}{% endif %}
   </p>
-  {% if featured.content contains '<img src="' %}
-    {% assign featured_image = featured.content | split: '<img src="' | last | split: '"' | first %}
+  {% assign img_parts = featured.content | split: '<img src="' %}
+  {% if img_parts.size > 1 %}
+    {% assign featured_image = img_parts[1] | split: '"' | first %}
     <img class="featured-post-image" src="{{ featured_image }}" alt="{{ featured.title }}">
   {% endif %}
-  <p class="excerpt">{{ featured.content | strip_html | strip_newlines | truncate: 220 }}</p>
+  <p class="excerpt">{{ featured.content | strip_html | strip_newlines | truncatewords: 40 }}</p>
   <a class="read-more" href="{{ featured.url | relative_url }}">Continue reading &rarr;</a>
 </article>
 
