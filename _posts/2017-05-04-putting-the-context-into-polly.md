@@ -38,11 +38,13 @@ Policy retryPolicy = Policy
 
 This policy could then be used around the codebase, with context specific to that call site passed in as part of the call:
 
+{% raw %}
 ```
 retryPolicy.ExecuteAsync(  
     action: context => GetCustomerDetailsAsync(someId),
     contextData: new Dictionary<string, object> {{"Operation", "GetCustomerDetails"}});
 ```
+{% endraw %}
 
 ### Sharing mutable information throughout an execution using `Context`: Polly v5.1.0
 
@@ -81,12 +83,14 @@ var authEnsuringPolicy = Policy<HttpResponseMessage>
 
 And the usage (elsewhere in the codebase):
 
+{% raw %}
 ```
 var httpResponseMessage =  
     await authEnsuringPolicy.ExecuteAsync(context => context["httpClient"].GetAsync(uri), 
     contextData: new Dictionary<string, object> {{"httpClient", httpClient}}
     );
 ```
+{% endraw %}
 
 Passing context as state-data parameters in the different parts of policy execution allows policy declaration and usage now to be separate.
 

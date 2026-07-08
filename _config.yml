@@ -9,3 +9,8 @@ minima:
   skin: classic
 plugins:
   - jekyll-feed
+exclude:
+  - docs
+  - tools
+  - Gemfile
+  - Gemfile.lock
