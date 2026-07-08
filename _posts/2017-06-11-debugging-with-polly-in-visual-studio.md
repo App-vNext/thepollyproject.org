@@ -17,7 +17,7 @@ This article describes how a better experience debugging with Polly in the mix c
 
 First, you likely want to set the debug setting '[Just My Code](https://docs.microsoft.com/en-gb/visualstudio/debugger/just-my-code)'.
 
-![[Visual Studio debugger configuration option: Just My Code]](https://docs.microsoft.com/en-gb/visualstudio/debugger/media/dbg_justmycode_options.png)
+![[Visual Studio debugger configuration option: Just My Code]](/assets/images/2017/06/dbg_justmycode_options.png)
 
 *(image via [https://docs.microsoft.com/en-gb/visualstudio/debugger/just-my-code](https://docs.microsoft.com/en-gb/visualstudio/debugger/just-my-code))*
 
