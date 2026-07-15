@@ -55,7 +55,7 @@ The library you rely on stays exactly where it is. What we're adding is a way fo
 
 ## When this takes effect
 
-We believe in giving our community plenty of time to review this, ask questions, and plan accordingly. So we're announcing this now, but we will not begin requesting payment from qualifying companies until **November 12, 2026**, roughly four months from today.
+We believe in giving our community plenty of time to review this, ask questions, and plan accordingly. So we're announcing this now, but we will not begin requesting payment from qualifying companies until **November 16, 2026**, roughly four months from today.
 
 Between now and then, nothing is required of anyone. We'll use this window to answer questions, refine the details, and make the process of paying as painless as possible for the organizations it applies to.
 
